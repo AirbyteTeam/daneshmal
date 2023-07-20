@@ -1,0 +1,28 @@
+spring:
+  resources:
+    static-locations: file:${ftp.home-dir}
+  mvc:
+    static-path-pattern: /res/**
+  datasource:
+    url: jdbc:postgresql://localhost:5432/daneshmal
+    username: daneshmal_db_user
+    password: '1sw236jk4545fgfv54e7RvV487'
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      mode: always
+server:
+  port: 8090
+  host: 194.147.142.36 # This should be your server's real IP
+  username: pz16454
+  password: wHWlqzMw
+  error:
+    include-message: ALWAYS
+    include-stacktrace: NEVER
+
