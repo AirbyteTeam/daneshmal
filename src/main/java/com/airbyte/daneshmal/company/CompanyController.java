@@ -30,6 +30,19 @@ public class CompanyController {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    @PreAuthorize(COMPANY_WRITE)
+    public ResponseEntity<Company> updateCompany(@PathVariable String id, @RequestBody CompanyDTO dto) {
+        return new ResponseEntity<>(service.update(id, dto), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize(COMPANY_WRITE)
+    public ResponseEntity<Void> deleteCompany(@PathVariable String id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @GetMapping("/{category}")
     public ResponseEntity<Page<Company>> getCompanyByCategory(@PathVariable String category, Pageable pageable) {
         return new ResponseEntity<>(service.getByCategory(category, pageable), HttpStatus.CREATED);
@@ -47,7 +60,7 @@ public class CompanyController {
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity< Page<Company>> getAllCompanies(Pageable pageable) {
+    public ResponseEntity<Page<Company>> getAllCompanies(Pageable pageable) {
         return new ResponseEntity<>(service.getAll(pageable), HttpStatus.OK);
     }
 }
