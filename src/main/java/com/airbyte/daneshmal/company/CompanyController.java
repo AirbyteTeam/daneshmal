@@ -54,7 +54,6 @@ public class CompanyController {
     }
 
     @GetMapping("/categories")
-    @PreAuthorize(COMPANY_WRITE)
     public ResponseEntity<List<CategoryDTO>> getCategories() {
         return new ResponseEntity<>(service.getCategories(), HttpStatus.OK);
     }
