@@ -1,6 +1,10 @@
 package com.airbyte.daneshmal.models;
 
 
+import com.airbyte.daneshmal.models.enums.Category;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
@@ -14,7 +18,8 @@ public class Company implements Serializable {
     private @Column(columnDefinition = "VARCHAR(255)") String companyName;
     private @Column(columnDefinition = "VARCHAR(255)") String companyFullName;
     private @Column(columnDefinition = "VARCHAR(255)") String logoUrl;
-    private @Column(columnDefinition = "VARCHAR(255)") String category;
+    private @JsonIgnore
+    @Column(columnDefinition = "VARCHAR(255)") String category;
     private @Column(columnDefinition = "VARCHAR(255)") String redirectUrl;
 
 
@@ -65,5 +70,10 @@ public class Company implements Serializable {
 
     public void setRedirectUrl(String redirectUrl) {
         this.redirectUrl = redirectUrl;
+    }
+
+    @JsonProperty("category")
+    public String persianName() {
+        return Category.valueOf(this.category).getPersianName();
     }
 }
