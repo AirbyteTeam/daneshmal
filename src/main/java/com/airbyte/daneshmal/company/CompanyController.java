@@ -43,6 +43,12 @@ public class CompanyController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/{id}")
+    @PreAuthorize(COMPANY_WRITE)
+    public ResponseEntity<Company> getOne(@PathVariable String id) {
+        return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
+    }
+
     @GetMapping("/{category}")
     public ResponseEntity<Page<Company>> getCompanyByCategory(@PathVariable String category, Pageable pageable) {
         return new ResponseEntity<>(service.getByCategory(category, pageable), HttpStatus.CREATED);
