@@ -76,4 +76,10 @@ public class Company implements Serializable {
     public String persianName() {
         return Category.valueOf(this.category).getPersianName();
     }
+
+    @JsonProperty("englishCategory")
+    public String englishName() {
+        return this.category;
+    }
+
 }
