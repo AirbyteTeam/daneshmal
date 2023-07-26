@@ -31,7 +31,7 @@ public class CompanyService extends ParentService<Company, CompanyRepository, Co
         company.setCompanyFullName(dto.getCompanyFullName() != null ? dto.getCompanyFullName() : company.getCompanyFullName());
         company.setLogoUrl(dto.getLogoUrl() != null ? dto.getLogoUrl() : company.getLogoUrl());
         company.setRedirectUrl(dto.getRedirectUrl() != null ? dto.getRedirectUrl() : company.getRedirectUrl());
-        company.setCategory(dto.getCategory() != null ? dto.getCategory() : company.getCategory());
+        company.setCategoryOriginalName(dto.getCategory() != null ? dto.getCategory() : company.getCategoryOriginalName());
         return company;
     }
 
@@ -42,7 +42,7 @@ public class CompanyService extends ParentService<Company, CompanyRepository, Co
         company.setCompanyFullName(dto.getCompanyFullName());
         company.setLogoUrl(dto.getLogoUrl());
         company.setRedirectUrl(dto.getRedirectUrl());
-        company.setCategory(dto.getCategory());
+        company.setCategoryOriginalName(dto.getCategory());
         return company;
     }
 
@@ -100,7 +100,7 @@ public class CompanyService extends ParentService<Company, CompanyRepository, Co
     protected List<Company> postFetch(List<Company> companies) {
         return companies
                 .stream()
-                .sorted(Comparator.comparing(Company::getDate))
+                .sorted(Comparator.comparing(Company::getDate).reversed())
                 .toList();
     }
 }

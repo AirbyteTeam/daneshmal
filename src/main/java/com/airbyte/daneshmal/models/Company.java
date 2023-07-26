@@ -20,7 +20,7 @@ public class Company implements Serializable {
     private @Column(columnDefinition = "VARCHAR(255)") String companyFullName;
     private @Column(columnDefinition = "VARCHAR(255)") String logoUrl;
     private @JsonIgnore
-    @Column(columnDefinition = "VARCHAR(255)") String category;
+    @Column(columnDefinition = "VARCHAR(255)") String categoryOriginalName;
     private @Column(columnDefinition = "VARCHAR(255)") String redirectUrl;
     private @JsonIgnore @Column Instant date;
 
@@ -62,14 +62,6 @@ public class Company implements Serializable {
         this.logoUrl = logoUrl;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getRedirectUrl() {
         return redirectUrl;
     }
@@ -80,12 +72,12 @@ public class Company implements Serializable {
 
     @JsonProperty("category")
     public String persianName() {
-        return Category.valueOf(this.category).getPersianName();
+        return Category.valueOf(this.categoryOriginalName).getPersianName();
     }
 
     @JsonProperty("englishCategory")
     public String englishName() {
-        return this.category;
+        return this.categoryOriginalName;
     }
 
     public Instant getDate() {
@@ -94,5 +86,13 @@ public class Company implements Serializable {
 
     public void setDate(Instant date) {
         this.date = date;
+    }
+
+    public String getCategoryOriginalName() {
+        return categoryOriginalName;
+    }
+
+    public void setCategoryOriginalName(String categoryOriginalName) {
+        this.categoryOriginalName = categoryOriginalName;
     }
 }
