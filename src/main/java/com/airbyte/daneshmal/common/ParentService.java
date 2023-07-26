@@ -40,6 +40,10 @@ public abstract class ParentService<MODEL, REPOSITORY extends JpaRepository<MODE
     protected void postFetch(MODEL model) {
     }
 
+    protected List<MODEL> postFetch(List<MODEL> models) {
+        return models;
+    }
+
     protected void postSave(MODEL model, DTO dto) {
     }
 
@@ -63,7 +67,7 @@ public abstract class ParentService<MODEL, REPOSITORY extends JpaRepository<MODE
     public Page<MODEL> getAll(Pageable pageable) {
         List<MODEL> modelList = new ArrayList<>();
         modelList = repository.findAll();
-
+        modelList = postFetch(modelList);
         final int start = (int) pageable.getOffset();
         final int end = Math.min((start + pageable.getPageSize()), modelList.size());
         final Page<MODEL> page = new PageImpl<>(modelList.subList(start, end), pageable, modelList.size());

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.UUID;
 
 
@@ -21,6 +22,11 @@ public class Company implements Serializable {
     private @JsonIgnore
     @Column(columnDefinition = "VARCHAR(255)") String category;
     private @Column(columnDefinition = "VARCHAR(255)") String redirectUrl;
+    private @JsonIgnore @Column Instant date;
+
+    public Company() {
+        this.date = Instant.now();
+    }
 
 
     public String getId() {
@@ -82,4 +88,11 @@ public class Company implements Serializable {
         return this.category;
     }
 
+    public Instant getDate() {
+        return date;
+    }
+
+    public void setDate(Instant date) {
+        this.date = date;
+    }
 }
