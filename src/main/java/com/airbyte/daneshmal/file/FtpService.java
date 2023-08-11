@@ -34,13 +34,13 @@ public class FtpService {
                 con.enterLocalPassiveMode();
                 con.setFileType(FTP.BINARY_FILE_TYPE);
 
-                boolean result = con.storeFile("/public_html/waste-images/" + file.getOriginalFilename(), file.getInputStream());
+                boolean result = con.storeFile("/public_html/" + file.getOriginalFilename(), file.getInputStream());
                 con.logout();
                 con.disconnect();
                 redirectAttributes.addFlashAttribute("message",
                         "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-                return "https://cloud.tala24.co/waste-images/" + file.getOriginalFilename();
+                return "https://cloud.daneshmall.com/" + file.getOriginalFilename();
             }
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message",

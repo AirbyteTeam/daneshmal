@@ -19,9 +19,9 @@ spring:
       mode: always
 server:
   port: 8090
-  host: 194.147.142.36 # This should be your server's real IP
-  username: pz16454
-  password: wHWlqzMw
+  host: 194.147.142.50 # This should be your server's real IP
+  username: pz17145
+  password: gIZFPKoY
   error:
     include-message: ALWAYS
     include-stacktrace: NEVER
