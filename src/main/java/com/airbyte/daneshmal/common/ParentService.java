@@ -61,6 +61,7 @@ public abstract class ParentService<MODEL, REPOSITORY extends JpaRepository<MODE
     public List<MODEL> getAll() {
         List<MODEL> modelList = new ArrayList<>();
         modelList = repository.findAll();
+        modelList = postFetch(modelList);
         return modelList;
     }
 
