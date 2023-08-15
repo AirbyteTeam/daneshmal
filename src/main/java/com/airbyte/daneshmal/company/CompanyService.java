@@ -56,7 +56,7 @@ public class CompanyService extends ParentService<Company, CompanyRepository, Co
         List<Predicate> predicates = new ArrayList<>();
 
         if (search.getCategory() != null) {
-            predicates.add(criteriaBuilder.equal(root.get("category"), search.getCategory()));
+            predicates.add(criteriaBuilder.equal(root.get("categoryOriginalName"), search.getCategory()));
         }
 
         criteriaBuilderQuery.where(predicates.toArray(new Predicate[0]));
