@@ -43,7 +43,7 @@ public class CompanyController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/specificCompany")
     @PreAuthorize(COMPANY_WRITE)
     public ResponseEntity<Company> getOne(@PathVariable String id) {
         return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
