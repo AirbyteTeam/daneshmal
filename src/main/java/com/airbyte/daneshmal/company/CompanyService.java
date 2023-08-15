@@ -2,6 +2,7 @@ package com.airbyte.daneshmal.company;
 
 import com.airbyte.daneshmal.common.ParentService;
 import com.airbyte.daneshmal.dto.CategoryDTO;
+import com.airbyte.daneshmal.dto.CategoryWithPersianNameDTO;
 import com.airbyte.daneshmal.dto.CompanyDTO;
 import com.airbyte.daneshmal.models.Company;
 import com.airbyte.daneshmal.models.enums.Category;
@@ -63,7 +64,9 @@ public class CompanyService extends ParentService<Company, CompanyRepository, Co
         return entityManager.createQuery(criteriaBuilderQuery).getResultList();
     }
 
-    public Page<Company> getByCategory(String category, Pageable pageable) {
+    public CategoryWithPersianNameDTO getByCategory(String category1, Pageable pageable) {
+        CategoryWithPersianNameDTO response = new CategoryWithPersianNameDTO();
+        String category = category1.replace("-", "");
         CompanyDTO dto = new CompanyDTO();
         dto.setCategory(category);
 
@@ -72,8 +75,9 @@ public class CompanyService extends ParentService<Company, CompanyRepository, Co
         final int start = (int) pageable.getOffset();
         final int end = Math.min((start + pageable.getPageSize()), modelList.size());
         final Page<Company> page = new PageImpl<>(modelList.subList(start, end), pageable, modelList.size());
-        return page;
-
+        response.setData(page);
+        response.setPersianName(Category.valueOf(category).getPersianName());
+        return response;
     }
 
     public List<Company> getByCategory(String category) {
