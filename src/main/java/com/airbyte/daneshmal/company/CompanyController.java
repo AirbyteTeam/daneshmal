@@ -1,7 +1,6 @@
 package com.airbyte.daneshmal.company;
 
 import com.airbyte.daneshmal.dto.CategoryDTO;
-import com.airbyte.daneshmal.dto.CategoryWithPersianNameDTO;
 import com.airbyte.daneshmal.dto.CompanyDTO;
 import com.airbyte.daneshmal.models.Company;
 import org.springframework.data.domain.Page;
@@ -51,7 +50,7 @@ public class CompanyController {
     }
 
     @GetMapping("/{category}")
-    public ResponseEntity<CategoryWithPersianNameDTO> getCompanyByCategory(@PathVariable String category, Pageable pageable) {
+    public ResponseEntity<Page<Company>> getCompanyByCategory(@PathVariable String category, Pageable pageable) {
         return new ResponseEntity<>(service.getByCategory(category, pageable), HttpStatus.CREATED);
     }
 
