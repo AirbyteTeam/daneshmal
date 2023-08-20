@@ -33,4 +33,11 @@ public class CommentController {
     public ResponseEntity<Page<Comment>> findAllComments(Pageable pageable) {
         return new ResponseEntity<>(service.getAll(pageable), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize(COMPANY_WRITE)
+    public ResponseEntity<Void> deleteComment(@PathVariable String id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
